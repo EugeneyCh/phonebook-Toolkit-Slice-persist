@@ -8,7 +8,6 @@ import { nanoid } from 'nanoid';
 
 function ContactForm() {
   const contacts = useSelector(getContacts);
-  console.log(contacts);
   const contactNameRef = useRef();
   const contactNumberRef = useRef();
 
