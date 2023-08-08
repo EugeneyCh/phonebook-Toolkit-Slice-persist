@@ -1,4 +1,6 @@
 import { createSlice } from '@reduxjs/toolkit';
+import storage from 'redux-persist/lib/storage';
+import { persistReducer } from 'redux-persist';
 
 const contactsSlice = createSlice({
   // Ім'я слайсу
@@ -32,8 +34,16 @@ const contactsSlice = createSlice({
   },
 });
 
+const persistConfig = {
+  key: 'phonebook',
+  storage,
+};
+
 // Генератори екшенів
 export const { addContact, deleteContact, updateFilter } =
   contactsSlice.actions;
 // Редюсер слайсу
-export const contactsReducer = contactsSlice.reducer;
+export const contactsReducer = persistReducer(
+  persistConfig,
+  contactsSlice.reducer
+);
